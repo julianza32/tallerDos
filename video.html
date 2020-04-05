@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: black;
+            color: white;
+        }
+
+        .contenedor {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .contenedorVideo{
+            width: 70%;
+            position: relative;
+        }
+
+        .contenedorControles {
+            background: rgba(255, 255, 255, 0.6);
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            visibility: hidden;
+        }
+
+        button {
+            width: 32px;
+            height: 32px;
+            background-size: 30px;
+            padding: 0;
+            margin: 0;
+            border: 0px;
+            margin: 15px;
+            background-repeat: no-repeat;
+            background-color: transparent;
+        }
+        h1{
+            margin-top:20px ;
+        }
+        video {
+            width: 100%;
+        }
+
+        #btn-play {
+            background-image: url(icons/play.png);
+        }
+
+        #btn-pause {
+            background-image: url(icons/pausar.png);
+            display: none;
+        }
+
+        #btn-retro {
+            background-image: url(icons/atrasar.png);
+        }
+
+        #btn-adelantar {
+            background-image: url(icons/adelantar.png);
+        }
+
+        #btn-mute {
+            background-image: url(icons/mute.png);
+        }
+
+        #btn-unmute {
+            background-image: url(icons/unmute.png);
+            display: none;
+
+        }
+
+        #btn-volumeup {
+            background-image: url(icons/volumeSubir.png);
+        }
+
+        #btn-volumedown {
+            background-image: url(icons/volumeBajar.png);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Controles de video Js</h1>
+    <div id="contenedor" class="contenedor">
+        <div class="contenedorVideo" onmouseover="aparacerControl();" onmouseout="ocultarControl();">
+            <video id="video" src="video/MajorLazerLightitUp.mp4"></video>
+            <div id="contenedorControles" class="contenedorControles">
+                <button id="btn-retro"></button>
+                <button id="btn-play"></button>
+                <button id="btn-pause"></button>
+                <button id="btn-adelantar"></button>
+                <button id="btn-mute"></button>
+                <button id="btn-unmute"></button>
+                <button id="btn-volumeup"></button>
+                <button id="btn-volumedown"></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let video = document.getElementsByTagName('video')[0];
+        let btnPlay = document.getElementById('btn-play');
+        let btnPause = document.getElementById('btn-pause');
+        let btnMute = document.getElementById('btn-mute');
+        let btnUnmute = document.getElementById('btn-unmute');
+        let btnAdelantar = document.getElementById('btn-adelantar');
+        let btnAtrasar = document.getElementById('btn-retro');
+        let btnVolUp = document.getElementById('btn-volumeup');
+        let btnVolDown = document.getElementById('btn-volumedown');
+        let contenedor = document.getElementById('contenedor');
+        let contenedorControles = document.getElementById('contenedorControles');
+        let tamanoPantallaQ = (screen.height * 0.20);
+        let tamanoPantalla = screen.height-tamanoPantallaQ;
+        contenedor.style.height = `${tamanoPantalla}px`;
+
+        btnPlay.addEventListener('click', pausePlayHandler, false);
+        btnPause.addEventListener('click', pausePlayHandler, false);
+        btnMute.addEventListener('click', muteUnmuteHandler, false);
+        btnUnmute.addEventListener('click', muteUnmuteHandler, false);
+        btnAdelantar.addEventListener('click', adelantarHandler, false);
+        btnAtrasar.addEventListener('click', adelantarHandler, false);
+        btnVolUp.addEventListener('click', volUpHandler, false);
+        btnVolDown.addEventListener('click', volDownHandler, false);
+        
+        function aparacerControl(){
+            contenedorControles.style.visibility = "visible";
+        }
+        function ocultarControl(){
+            contenedorControles.style.visibility = "hidden";
+        }
+
+        function pausePlayHandler(e) {
+            if (video.paused) {
+                video.play();
+                btnPause.style.display = 'initial';
+                btnPlay.style.display = 'none';
+            } else {
+                video.pause();
+                btnPause.style.display = 'none';
+                btnPlay.style.display= 'initial';
+            }
+        }
+        function muteUnmuteHandler(e) {
+            if (video.volume == 0.0) {
+                video.volume = 1.0;
+                btnMute.style.display = 'initial';
+                btnUnmute.style.display = 'none';
+            } else {
+                video.volume = 0.0;
+                btnMute.style.display = 'none';
+                btnUnmute.style.display = 'initial';
+            }
+        }
+        function adelantarHandler(e) {
+            tiempoActual = video.currentTime;
+            tiempoAdelantar = 5;
+            tiempoNuevo = tiempoActual + tiempoAdelantar;
+            video.currentTime = tiempoNuevo;
+        }
+        function atrasarHandler(e) {
+            tiempoActual = video.currentTime;
+            tiempoAdelantar = -5;
+            tiempoNuevo = tiempoActual + tiempoAdelantar;
+            video.currentTime = tiempoNuevo;
+        }
+        function volUpHandler(e) {
+            volActual = video.volume;
+            volNuevo = volActual + 0.2;
+            if (volNuevo <= 1) {
+                video.volume = volNuevo
+            }
+        }
+
+        function volDownHandler(e) {
+
+            volActual = video.volume;
+            volNuevo = volActual - 0.2;
+            if (volNuevo > 0) {
+                video.volume = volNuevo;
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .contenedorBtns {
+            position: sticky;
+            top: 0px;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            z-index: 0;
+            background-color: white;
+        }
+
+        button {
+            background-color: rgb(34, 113, 179);
+            border: none;
+            color: white;
+            width: 200px;
+            height: 40px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+    </style>
+    <title>Crear Div's</title>
+</head>
+
+<body>
+
+
+    <section class="contenedorBtns">
+        <button onclick="crearDivs()">Agregar Div</button>
+        <button onclick="eliminarTodosDivs()">Eliminar todos los div's</button>
+        <button onclick="eliminarDivsImpares()">Eliminar todos los div's impares</button>
+        <button onclick="eliminarDivEsp()">Eliminar div especifico</button>
+    </section>
+
+    <section></section>
+    <script>
+
+        let contenedorDivs = document.getElementsByTagName('section')[1];
+        let estiloAncho = "200px";
+        let estiloHeigth = "60px";
+        let color = "crimson";
+        let fondoContenedor = "black";
+        let pflex = "flex";
+        let pWrap = "wrap";
+        let pCenter = "center";
+        contenedorDivs.style.background = fondoContenedor;
+        contenedorDivs.style.display = pflex;
+        contenedorDivs.style.flexWrap = pWrap; 
+        contenedorDivs.style.justifyContent = pCenter;
+        
+ 
+
+
+        function crearDivs() {
+            let divNuevo = document.createElement('div');
+            divNuevo.style.background = color;
+            divNuevo.style.width = estiloAncho;
+            divNuevo.style.lineHeight = estiloHeigth;
+            divNuevo.style.textAlign = "center";
+            divNuevo.style.margin = "10px 40px";
+            divNuevo.style.borderRadius = "5px";
+
+
+
+            if (contenedorDivs.childElementCount == 0) {
+                divNuevo.innerHTML = 1;
+                contenedorDivs.insertBefore(divNuevo, contenedorDivs.length);
+            } else {
+                valor = Number(contenedorDivs.lastChild.innerText);
+                divNuevo.innerHTML = valor + 1;
+                contenedorDivs.insertBefore(divNuevo, contenedorDivs.length);
+            }
+        }
+        function eliminarTodosDivs() {
+            while (contenedorDivs.childNodes.length > 0) {
+                contenedorDivs.childNodes[0].remove()
+            }
+        }
+        function eliminarDivsImpares() {
+            
+            for (i = 0; i < contenedorDivs.childNodes.length; i++) {
+                valor = contenedorDivs.childNodes[i].innerText
+                if (valor % 2) {
+                    contenedorDivs.childNodes[i].remove();
+                }
+            }
+        }
+        function eliminarDivEsp(){
+            divIni=contenedorDivs.childNodes.length;
+            divBorrar = Number(prompt("Ingrese el div que quiera eliminar"));
+            for (i = 0; i < contenedorDivs.childNodes.length; i++) {
+                valor = contenedorDivs.childNodes[i].innerText;
+                if (divBorrar == valor) {
+                    contenedorDivs.childNodes[i].remove();
+                }
+            }
+            divFin=contenedorDivs.childNodes.length;
+            if(divIni==divFin){
+                alert("No se encontro el numero")
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

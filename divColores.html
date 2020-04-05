@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            height: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            width: 100%;
+        }
+
+        .amarillo {
+            width: 20px;
+            height: 20px;
+            background-color: yellow;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 4px;
+        }
+
+        .azul {
+            width: 20px;
+            height: 20px;
+            background-color: #2271b3;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 4px;
+        }
+
+        .rojo {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 4px;
+        }
+
+        .verde {
+            width: 20px;
+            height: 20px;
+            background-color: yellowgreen;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 4px;
+        }
+    </style>
+    <title>Div Colors</title>
+</head>
+
+<body>
+    <section>
+        <h1>Pasa el mouse encima de los cuadros de colores para cambiar el fondo</h1>
+        <div onmouseover="amarillo()" class="amarillo"></div>
+        <div onmouseover="azul()" class="azul"></div>
+        <div onmouseover="rojo()" class="rojo"></div>
+        <div onmouseover="verde()" class="verde"></div>
+
+    </section>
+    <script>
+        // let amarillo = document.getElementsByClassName('amarillo');
+        // let azul = document.getElementsByClassName('azul');
+        // let rojo = document.getElementsByClassName('rojo');
+        // let verde = document.getElementsByClassName('verde');
+        let body = document.getElementsByTagName('body')[0];
+
+
+        function amarillo() {
+            body.style.background = "yellow";
+        }
+        function azul() {
+            body.style.background = "#2271b3";
+        } 
+        function rojo() {
+            body.style.background = "red";
+        } 
+        function verde() {
+            body.style.background = "yellowgreen";
+        }
+
+
+    </script>
+
+
+
+</body>
+
+</html>

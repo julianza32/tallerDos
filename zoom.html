@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+        }
+
+        h1 {
+            width: 70%;
+            text-align: center;
+            margin: 40px auto;
+        }
+
+        .contenedor {
+            display: flex;
+            flex-direction: row;
+            width: 70%;
+            margin: 40px auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .contenedorImg{
+            width: 90%;
+            display: flex;
+            justify-content: center;
+        }
+        .contenedorBtn{
+            margin-top: 30px;
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+        }
+        button{
+            width: 100px;
+            height: 25px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Zoom in - Zoom out</h1>
+
+    <div class="contenedor">
+        <div class="contenedorImg">
+            <img id="imagen" src="img/meme.png" alt="meme">
+        </div>
+        <div class="contenedorBtn">
+            <button onclick="zoomIn()">Zoom in</button>
+            <button onclick="zoomOut()">Zoom out</button>
+        </div>
+    </div>
+
+    <script>
+        imagen = document.getElementById('imagen');
+        btnContainer = document.getElementsByClassName('contenedorBtn')[0];
+        imagen.style.transition = "all 2s"
+        btnContainer.style.transition = "all 2s";
+        function zoomIn(){
+            btnContainer.style.msTransform = "translate(0px, 45px);";
+            btnContainer.style.transform = "translate(0px, 45px)";
+            imagen.style.msTransform = "scale(1.5)";
+            imagen.style.transform = "scale(1.5)";
+        }
+        function zoomOut(){
+
+            btnContainer.style.msTransform = "translate(0px, 0px);";
+            btnContainer.style.transform = "translate(0px, 0px)";
+            imagen.style.msTransform = "scale(1.0)";
+            imagen.style.transform = "scale(1.0)";
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+</body>
+
+</html>
